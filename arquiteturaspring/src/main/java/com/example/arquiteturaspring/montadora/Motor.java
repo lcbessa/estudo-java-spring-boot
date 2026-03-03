@@ -9,13 +9,8 @@ public class Motor {
 
     @Override
     public String toString() {
-        return "Motor{" +
-                "modelo='" + modelo + '\'' +
-                ", cavalos=" + cavalos +
-                ", cilindros=" + cilindros +
-                ", litragem=" + litragem +
-                ", tipo=" + tipo +
-                '}';
+        return " Motor{" + "modelo='" + modelo + '\'' + ", cavalos=" + cavalos + ", cilindros=" + cilindros +
+                ", litragem=" + litragem + ", tipo=" + tipo + '}';
     }
 
     public Integer getCavalos() {
