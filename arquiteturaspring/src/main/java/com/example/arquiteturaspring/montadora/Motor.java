@@ -9,7 +9,7 @@ public class Motor {
 
     @Override
     public String toString() {
-        return " Motor{" + "modelo='" + modelo + '\'' + ", cavalos=" + cavalos + ", cilindros=" + cilindros +
+        return " Motor = {" + "modelo='" + modelo + '\'' + ", cavalos=" + cavalos + ", cilindros=" + cilindros +
                 ", litragem=" + litragem + ", tipo=" + tipo + '}';
     }
 

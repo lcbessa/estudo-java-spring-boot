@@ -48,6 +48,6 @@ public abstract class Carro {
         if (chave.getMontadora() != this.montadora) {
             return new CarroStatus("Não é possível ligar o carro com essa chave!" + motor);
         }
-        return new CarroStatus("Carro ligado. Rodando com o motor" + motor);
+        return new CarroStatus("Carro ligado." + motor);
     }
 }

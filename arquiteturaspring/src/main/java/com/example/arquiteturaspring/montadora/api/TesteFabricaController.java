@@ -16,7 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class TesteFabricaController {
 
     @Autowired
-    @Qualifier("motorEletrico")
+//    @Qualifier("motorEletrico")
+//    Se tiver a annotation @Primary, não precisa setar o @Qualifier que o spring vai sabe qual Bean usar.
     private Motor motor;
 
     @PostMapping("/cadastrar")
