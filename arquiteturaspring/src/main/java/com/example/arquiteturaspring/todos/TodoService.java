@@ -13,4 +13,8 @@ public class TodoService {
     public TodoEntity salvar(TodoEntity novoTodo) {
         return repository.save(novoTodo);
     }
+
+    public TodoEntity atualizarStatus(TodoEntity todo) {
+        return repository.save(todo);
+    }
 }

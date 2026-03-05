@@ -1,9 +1,7 @@
 package com.example.arquiteturaspring.todos;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/todos")
@@ -16,7 +14,12 @@ public class TodoController {
     }
 
     @PostMapping("/cadastrar")
-    public TodoEntity salvar(@RequestBody TodoEntity todo) {
+    public TodoEntity salvar(@RequestBody @Valid TodoEntity todo) {
         return this.service.salvar(todo);
+    }
+
+    @PutMapping
+    public TodoEntity atualizarStatus(@PathVariable("id") Integer id, @RequestBody TodoEntity todo) {
+        return this.service.atualizarStatus(todo);
     }
 }

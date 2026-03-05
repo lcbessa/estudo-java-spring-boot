@@ -1,6 +1,9 @@
 package com.example.arquiteturaspring.todos;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 
 @Entity
 @Table(name = "tb_todo")
@@ -11,11 +14,14 @@ public class TodoEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false)
+    @Column(length = 120, nullable = false)
+    @NotBlank
+    @Size(min = 5, max = 15)
     private String descricao;
 
     @Column
     private Boolean concluido;
+
 
     public Boolean getConcluido() {
         return concluido;
