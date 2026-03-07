@@ -1,7 +1,10 @@
 package com.example.arquiteturaspring.todos;
 
-import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -9,6 +12,7 @@ import java.util.List;
 @RequestMapping("/todos")
 public class TodoController {
 
+    private static final Logger log = LoggerFactory.getLogger(TodoController.class);
     private final TodoService service;
 
     public TodoController(TodoService service) {
@@ -17,7 +21,12 @@ public class TodoController {
 
     @PostMapping("/cadastrar")
     public TodoEntity salvar(@RequestBody TodoEntity todo) {
-        return this.service.salvar(todo);
+        try {
+            return this.service.salvar(todo);
+        } catch (IllegalArgumentException e) {
+            var mensagemErro = e.getMessage();
+            throw new ResponseStatusException(HttpStatus.CONFLICT, mensagemErro);
+        }
     }
 
     @PutMapping("/editar/{id}")
