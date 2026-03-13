@@ -36,7 +36,7 @@ public class Livro {
     private BigDecimal preco;
 
     @ManyToOne
-    @JoinColumn(name = "id_autor")
+    @JoinColumn(name = "id_autor", nullable = false)
     private Autor autor;
 
 }

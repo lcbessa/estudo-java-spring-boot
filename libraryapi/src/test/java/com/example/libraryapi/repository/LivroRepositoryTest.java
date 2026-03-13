@@ -9,18 +9,24 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.UUID;
 
 @SpringBootTest
 class LivroRepositoryTest {
 
     @Autowired
-    LivroRepository LivroRepository;
+    LivroRepository livroRepository;
     @Autowired
     AutorRepository autorRepository;
 
     @Test
     void salvarTest() {
+
+        Autor autor = new Autor();
+        autor.setNome("James Clear");
+        autor.setDataNascimento(LocalDate.of(1970, 7, 12));
+        autor.setNacionalidade("EUA");
+        autor = autorRepository.save(autor);
+
         Livro livro = new Livro();
         livro.setIsbn("90887-84874");
         livro.setPreco(BigDecimal.valueOf(100));
@@ -28,10 +34,8 @@ class LivroRepositoryTest {
         livro.setTitulo("UFO");
         livro.setDataPublicacao(LocalDate.of(1980, 1, 2));
 
-        Autor autor = autorRepository.findById(UUID.fromString("18fb5a21-e6d1-4316-9968-a583213b3e60")).orElse(null);
-
         livro.setAutor(autor);
 
-        LivroRepository.save(livro);
+        livroRepository.save(livro);
     }
 }
