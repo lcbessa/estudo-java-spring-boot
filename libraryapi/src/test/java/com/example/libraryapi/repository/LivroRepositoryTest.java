@@ -25,7 +25,7 @@ class LivroRepositoryTest {
         autor.setNome("James Clear");
         autor.setDataNascimento(LocalDate.of(1970, 7, 12));
         autor.setNacionalidade("EUA");
-        autor = autorRepository.save(autor);
+        autorRepository.save(autor);
 
         Livro livro = new Livro();
         livro.setIsbn("90887-84874");
