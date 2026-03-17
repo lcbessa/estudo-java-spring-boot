@@ -4,8 +4,10 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -13,7 +15,7 @@ import java.util.UUID;
 @Setter
 @Entity
 @ToString
-@Table(name = "tb_autor")
+@Table(name = "autor")
 public class Autor {
 
     @Id
@@ -29,6 +31,14 @@ public class Autor {
 
     @Column(name = "nacionalidade", length = 50, nullable = false)
     private String nacionalidade;
+
+    @CreationTimestamp
+    @Column(name = "data_cadastro", nullable = false)
+    private LocalDateTime dataCadastro;
+
+    @CreationTimestamp
+    @Column(name = "data_atualizacao", nullable = false)
+    private LocalDateTime dataAtualizacao;
 
     @OneToMany(mappedBy = "autor")
     private List<Livro> livros;

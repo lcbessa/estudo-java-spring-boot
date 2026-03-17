@@ -3,9 +3,12 @@ package com.example.libraryapi.model;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.annotation.CreatedDate;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter
@@ -15,7 +18,7 @@ import java.util.UUID;
 public class Livro {
 
     @Id
-    @Column
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
@@ -27,6 +30,14 @@ public class Livro {
 
     @Column(name = "data_publicacao")
     private LocalDate dataPublicacao;
+
+    @CreationTimestamp
+    @Column(name = "data_cadastro", nullable = false)
+    private LocalDateTime dataCadastro;
+
+    @CreationTimestamp
+    @Column(name = "data_atualizacao", nullable = false)
+    private LocalDateTime dataAtualizacao;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "genero", length = 30, nullable = false)
