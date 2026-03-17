@@ -26,7 +26,7 @@ public class AutorController {
         var autorEntidade = autor.mapearParaAutor();
         autorService.salvar(autorEntidade);
 
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}").buildAndExpand(autorEntidade.getId()).toUri();
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(autorEntidade.getId()).toUri();
         return ResponseEntity.created(location).build();
     }
 }
