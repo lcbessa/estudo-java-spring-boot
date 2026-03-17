@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -15,6 +17,7 @@ import java.util.UUID;
 @Setter
 @Entity
 @ToString
+@EntityListeners(AuditingEntityListener.class)
 @Table(name = "autor")
 public class Autor {
 
@@ -32,12 +35,12 @@ public class Autor {
     @Column(name = "nacionalidade", length = 50, nullable = false)
     private String nacionalidade;
 
-    @CreationTimestamp
-    @Column(name = "data_cadastro", nullable = false)
+    @CreatedDate
+    @Column(name = "data_cadastro")
     private LocalDateTime dataCadastro;
 
-    @CreationTimestamp
-    @Column(name = "data_atualizacao", nullable = false)
+    @LastModifiedDate
+    @Column(name = "data_atualizacao")
     private LocalDateTime dataAtualizacao;
 
     @OneToMany(mappedBy = "autor")

@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -14,6 +17,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Table(name = "livro")
 public class Livro {
 
@@ -31,12 +35,12 @@ public class Livro {
     @Column(name = "data_publicacao")
     private LocalDate dataPublicacao;
 
-    @CreationTimestamp
-    @Column(name = "data_cadastro", nullable = false)
+    @CreatedDate
+    @Column(name = "data_cadastro")
     private LocalDateTime dataCadastro;
 
-    @CreationTimestamp
-    @Column(name = "data_atualizacao", nullable = false)
+    @LastModifiedDate
+    @Column(name = "data_atualizacao")
     private LocalDateTime dataAtualizacao;
 
     @Enumerated(EnumType.STRING)
