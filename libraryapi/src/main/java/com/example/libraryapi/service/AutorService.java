@@ -42,7 +42,4 @@ public class AutorService {
         return autorRepository.findAll();
     }
 
-    public List<Autor> buscarAutores() {
-        return autorRepository.findAll();
-    }
 }

@@ -46,14 +46,6 @@ public class AutorController {
         return ResponseEntity.notFound().build();
     }
 
-    @GetMapping()
-    public ResponseEntity<List<AutorDTO>> buscarAutores() {
-        List<Autor> resultado = autorService.buscarAutores();
-        List<AutorDTO> listaAutores = resultado.stream().map(autor -> new AutorDTO(autor.getId(), autor.getNome(),
-                autor.getDataNascimento(), autor.getNacionalidade())).toList();
-        return ResponseEntity.ok(listaAutores);
-    }
-
     @GetMapping
     public ResponseEntity<List<AutorDTO>> listarAutores(@RequestParam(value = "nome", required = false) String nome,
                                                         @RequestParam(value = "nacionalidade", required = false) String nacionalidade) {
