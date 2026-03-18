@@ -25,6 +25,7 @@ public class AutorController {
     @PostMapping
     public ResponseEntity<Void> salvarAutor(@RequestBody AutorDTO autor) {
         var autorEntidade = autor.mapearParaAutor();
+        System.out.println("autorEntidade: " + autorEntidade);
         autorService.salvar(autorEntidade);
 
         URI location =
@@ -64,6 +65,26 @@ public class AutorController {
         }
 
         autorService.deletar(autorOptional.get());
+
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("{id}")
+    public ResponseEntity<Void> atualizarAutor(@PathVariable String id, @RequestBody AutorDTO dto) {
+        var idAutor = UUID.fromString(id);
+        Optional<Autor> autorOptional = autorService.obterPorId(idAutor);
+
+        if (autorOptional.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        var autor = autorOptional.get();
+
+        autor.setNome(dto.nome());
+        autor.setDataNascimento(dto.dataNascimento());
+        autor.setNacionalidade(dto.nacionalidade());
+
+        autorService.atualizar(autor);
 
         return ResponseEntity.noContent().build();
     }
